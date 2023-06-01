@@ -1,6 +1,7 @@
 package com.CRMVCUBEUSERAPI.Controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.CRMVCUBEUSERAPI.Entity.EmployeEntity;
-import com.CRMVCUBEUSERAPI.Entity.RegisterEntity;
+import com.CRMVCUBEUSERAPI.Entity.LoginEntity;
 import com.CRMVCUBEUSERAPI.Service.EmployeService;
 @CrossOrigin("*")
 @RestController
@@ -40,7 +41,11 @@ public void delete(@PathVariable("id") Integer Emp_ID) {
 	employeService.deleteById(Emp_ID);
 }
 @PostMapping("login")
-public void loginInfo(@RequestBody EmployeEntity lo) {
-	//employeService.loginInfo(lo.getEmp_Email(),lo.getEmp_Pass());}
+public List<EmployeEntity>  loginInfo(@RequestBody LoginEntity lo) {
+	List<EmployeEntity> emps=employeService.getAll();
+	System.out.println(lo.getEmp_email() + lo.getEmp_pass() );
+	List<EmployeEntity> emp= emps.stream().filter(e->e.getEmp_email().equals(lo.getEmp_email()) && e.getEmp_pass().equals(lo.getEmp_pass())).collect(Collectors.toList());
+	
+	return emp;
 }
 }

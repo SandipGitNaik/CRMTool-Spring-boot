@@ -33,8 +33,4 @@ public void deleteById(Integer emp_ID) {
 	employeRepository.deleteById(emp_ID);
 }
 
-public void loginInfo(String Emp_Email,String Emp_Pass) {
-	// TODO Auto-generated method stub
-	employeRepository.findByEmp_Email(Emp_Email,Emp_Pass);
-}
 }
