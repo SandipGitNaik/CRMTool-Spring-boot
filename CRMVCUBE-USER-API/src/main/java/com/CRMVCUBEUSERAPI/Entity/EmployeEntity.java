@@ -132,7 +132,4 @@ public void setEmp_pass(String emp_pass) {
 	this.emp_pass = emp_pass;
 }
 
-
-
-
 }
